@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div th:if="${!items.isEmpty()}">
+        <h1>Todo List</h1>
+        <ul th:each="todo : ${items}">
+            <li th:text="${todo.name}"></li>
+        </ul>
+    </div>
+    <div th:if="${items.isEmpty()}">
+        <p>No Todo Items</p>
+    </div>
+    <br>
+    <hr>
+    <br>
+    <div>
+        <form th:action="@{/save-todo}" th:object="${item}" method="post">
+            <div>Todo &nbsp;&nbsp; <input type="text" th:field="*{name}"></div>
+            <br>
+            <input type="submit" value="Save">
+        </form>
+    </div>
+
+</body>
+</html>
